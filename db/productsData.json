@@ -1,0 +1,114 @@
+[
+    {
+        "id": 1,
+        "name": "CASE IPHONE",
+        "catagory": "phone",
+        "price": 20000,
+        "qty": 10,
+        "rack": 2
+    },
+    {
+        "id": 2,
+        "name": "HEADSET GAMING",
+        "catagory": "elektronik",
+        "price": 50000,
+        "qty": 30,
+        "rack": 3
+    },
+    {
+        "id": 3,
+        "name": "HOODIE",
+        "catagory": "fashion",
+        "price": 99000,
+        "qty": 30,
+        "rack": 4
+    },
+    {
+        "id": 4,
+        "name": "HEADSET JBL",
+        "catagory": "elektronik",
+        "price": 45000,
+        "qty": 35,
+        "rack": 3
+    },
+    {
+        "id": 5,
+        "name": "KOLOR",
+        "catagory": "fashion",
+        "price": 25000,
+        "qty": 20,
+        "rack": 4
+    },
+    {
+        "id": 6,
+        "name": "MAGIC COM",
+        "catagory": "elektronik",
+        "price": 10000,
+        "qty": 19,
+        "rack": 3
+    },
+    {
+        "id": 7,
+        "name": "MASKER WAJAH",
+        "catagory": "skincare",
+        "price": 60000,
+        "qty": 35,
+        "rack": 1
+    },
+    {
+        "id": 8,
+        "name": "MIXER",
+        "catagory": "elektronik",
+        "price": 110000,
+        "qty": 10,
+        "rack": 3
+    },
+    {
+        "id": 9,
+        "name": "SANDAL",
+        "catagory": "fashion",
+        "price": 60000,
+        "qty": 25,
+        "rack": 4
+    },
+    {
+        "id": 10,
+        "name": "SCARLET WHITENING",
+        "catagory": "skincare",
+        "price": 75000,
+        "qty": 27,
+        "rack": 1
+    },
+    {
+        "id": 11,
+        "name": "SUPRIME",
+        "catagory": "fashion",
+        "price": 200000,
+        "qty": 17,
+        "rack": 4
+    },
+    {
+        "id": 12,
+        "name": "SAMSUNG",
+        "catagory": "phone",
+        "price": 2500000,
+        "qty": 11,
+        "rack": 2
+    },
+    {
+        "id": 1,
+        "name": "OPPO",
+        "catagory": "phone",
+        "price": 20000,
+        "qty": 11,
+        "rack": 2
+    },
+    {
+        "id": 1,
+        "name": "OPPO",
+        "catagory": "phone",
+        "price": 20000,
+        "qty": 11,
+        "rack": 2
+    }
+]
