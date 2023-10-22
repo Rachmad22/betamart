@@ -2,7 +2,7 @@
 
 Betamart is a super good aplication for people who has a store. this apk will manage all of your items, you can find the stock, price, quantities, and location of products.
 
-# How i solved this
+## How i solved this
 According to the rules, it is not allowed to store data in an external database, so I created a JSON data directly in the 'db' folder
 
 - user add product
