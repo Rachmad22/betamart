@@ -1,8 +1,6 @@
 const path = './db/productsData.json'
 const pathRack = './db/racks.json'
 const encoded = "utf-8"
-const { AsyncLocalStorage } = require('async_hooks')
-const { log } = require('console')
 const fs = require('fs/promises')
 
 // read all products
@@ -137,10 +135,10 @@ const updateQty = async(req, res) => {
 const productRack = async (req, res) =>{
     try {
         const { rack } = req.params
+        let numberRack = rack << 0
         const data = await fs.readFile(path, encoded)
-        console.log(Object.values(JSON.parse(data)).rack, rack);
-        const result = Object.values(JSON.parse(data)).filter((item)=> item.rack === rack)
-        console.log(typeof Object.values(JSON.parse(data)));
+        const convert = Object.values(JSON.parse(data))
+        const result = convert.filter((data)=> data.rack === numberRack )
         res.status(200).json({
             status: true,
             message: "success",
@@ -158,12 +156,13 @@ const productRack = async (req, res) =>{
 }
 
 // get product by price range
-const productPrice = async (req, res) => {
+const productPriceRange = async (req, res) => {
     try {
         const { priceA, priceB } = req.body
+        console.log(priceA, priceB);
         const data = await fs.readFile(path, encoded)
         console.log(data);
-        const productPrice = JSON.parse(data).find((data)=> data?.price > priceA && data?.price < priceB)
+        const productPrice = JSON.parse(data).filter(data => data?.price >= priceA && data?.price <= priceB)
         res.status(200).json({
             status: true,
             message: "success",
@@ -186,5 +185,5 @@ module.exports = {
     addProduct,
     updateQty,
     productRack,
-    productPrice
+    productPriceRange
 }

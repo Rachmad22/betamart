@@ -41,3 +41,9 @@ git clone https://github.com/Rachmad22/betamart.git
 npm install
 ```
 - Type ` npm start` To Start
+
+
+## Endpoint Documentation by Postman
+```
+https://www.postman.com/rachmadd/workspace/betamart/request/24691687-6e2e35bc-245f-439a-905b-b55e00cb8236
+```
