@@ -1,6 +1,8 @@
 const path = './db/productsData.json'
 const pathRack = './db/racks.json'
 const encoded = "utf-8"
+const { AsyncLocalStorage } = require('async_hooks')
+const { log } = require('console')
 const fs = require('fs/promises')
 
 // read all products
@@ -84,36 +86,105 @@ const addProduct = async (req, res) => {
         })
     } catch (error) {
         res.status(400).json({
-            status: true,
+            status: false,
             message: error?.message ?? error,
             data: "failed to add data"
     })
 }
 }
 
+// customers transaction process
 const updateQty = async(req, res) => {
     try {
         // read all products
         const oldData = await fs.readFile(path, encoded)
-        const data = Object.values(JSON.parse(oldData))
+        let data = Object.values(JSON.parse(oldData))
         const {id, name, catagory, price, qty, rack} = req.body
 
-        // get product by catagory
+        // get product by id
         const getData = data.findIndex((data)=> data?.id === id)
+        let findData = data[getData]?.qty
+        if(findData - qty < 0){
+            throw{ message: "sold out" }
+        }
+        // update qty of product to db
+        data[getData] = {
+            id: data[getData].id ?? id, 
+            name: data[getData].name ?? name, 
+            catagory: data[getData].catagory ?? catagory, 
+            price: data[getData]?.price ?? price, 
+            qty: findData - qty, 
+            rack: data[getData]?.rack ?? rack
+        }
 
-        console.log(getData);
+        // rewrite updated data
+        const add = await fs.writeFile(path, JSON.stringify(data), encoded)
+        res.status(200).json({
+            status: true,
+            message: "success",
+            data: "updated data"
+        })
     } catch (error) {
         res.status(400).json({
-            status: true,
+            status: false,
             message: error?.message ?? error,
             data: "failed to get the product"
     })
 }
 }
 
+// get products by rack
+const productRack = async (req, res) =>{
+    try {
+        const { rack } = req.params
+        const data = await fs.readFile(path, encoded)
+        console.log(Object.values(JSON.parse(data)).rack, rack);
+        const result = Object.values(JSON.parse(data)).filter((item)=> item.rack === rack)
+        console.log(typeof Object.values(JSON.parse(data)));
+        res.status(200).json({
+            status: true,
+            message: "success",
+            total: result?.length,
+            data: result?.length === 0 ? "data doesnt exist" : result
+        })
+    } catch (error) {
+        res.status(500).json({
+            status: false,
+            message: error?.message ?? error ?? "We got trouble in the database",
+            total: 0,
+            data: [],
+        })
+    }
+}
+
+// get product by price range
+const productPrice = async (req, res) => {
+    try {
+        const { priceA, priceB } = req.body
+        const data = await fs.readFile(path, encoded)
+        console.log(data);
+        const productPrice = JSON.parse(data).find((data)=> data?.price > priceA && data?.price < priceB)
+        res.status(200).json({
+            status: true,
+            message: "success",
+            total: productPrice?.length,
+            data: productPrice?.length === 0 ? "data doesnt exist" : productPrice
+        })
+    } catch (error) {
+        res.status(500).json({
+            status: false,
+            message: error?.message ?? error ?? "We got trouble in the database",
+            total: 0,
+            data: [],
+        })
+    }
+}
+
 module.exports = {
     allProducts,
     findProduct,
     addProduct,
-    updateQty
+    updateQty,
+    productRack,
+    productPrice
 }

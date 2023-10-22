@@ -18,10 +18,8 @@ app.get("/", (req, res) => {
     });
   });
 
-// get all products
 app.use('/products', productPath)
 
-// get rack by name
 app.use('/racks', rackPath)
 
 const port = 4545

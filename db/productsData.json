@@ -92,19 +92,11 @@
         "name": "SAMSUNG",
         "catagory": "phone",
         "price": 2500000,
-        "qty": 11,
+        "qty": 20,
         "rack": 2
     },
     {
-        "id": 1,
-        "name": "OPPO",
-        "catagory": "phone",
-        "price": 20000,
-        "qty": 11,
-        "rack": 2
-    },
-    {
-        "id": 1,
+        "id": 13,
         "name": "OPPO",
         "catagory": "phone",
         "price": 20000,
