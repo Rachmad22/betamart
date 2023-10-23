@@ -46,5 +46,5 @@ npm install
 
 ## Endpoint Documentation by Postman
 ```
-https://www.postman.com/rachmadd/workspace/betamart/request/24691687-6e2e35bc-245f-439a-905b-b55e00cb8236
+https://www.postman.com/rachmadd/workspace/betamart/documentation/24691687-96d7f6e7-a95e-4487-b455-326d3b409222
 ```
