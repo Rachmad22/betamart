@@ -4,7 +4,7 @@ const router = require("express").Router();
 
 router.get("/", allProducts)
 router.get("/:name?", findProduct)
-router.get("/search?", findProductLimit)
+router.get("/search/limit?", findProductLimit)
 router.post("/add", addProduct)
 router.post("/payment", updateQty)
 router.get("/rack/:rack?", productRack)

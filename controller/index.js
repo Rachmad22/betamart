@@ -48,14 +48,12 @@ const findProduct = async (req, res) => {
 // find product with limit by user
 const findProductLimit = async (req, res) => {
     try {
-        const searchTerm = req.query.search
-        const limit = parseInt(req.query.limit)
-        if (!searchTerm) {
-           throw { error: 'fill it please' }
+        const limit = req.params
+        if (!limit) {
+            throw { error: 'fill it please' }
         }
         const data = await fs.readFile(path, encoded)
-        console.log(JSON.parse(data))
-        const searchResult = JSON.parse(data).filter(item => item.name.includes(searchTerm)).slice(0, limit);
+        const searchResult = Object.values(JSON.parse(data)).filter(item => item.qty < limit)
         res.status(200).json({
             status: true,
             message: "success",
