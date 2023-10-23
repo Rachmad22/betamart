@@ -1,9 +1,10 @@
-const { allProducts, findProduct, addProduct, updateQty, productRack, productPriceRange } = require("../controller");
+const { allProducts, findProduct, addProduct, updateQty, productRack, productPriceRange, findProductLimit } = require("../controller");
 
 const router = require("express").Router();
 
 router.get("/", allProducts)
 router.get("/:name?", findProduct)
+router.get("/search?", findProductLimit)
 router.post("/add", addProduct)
 router.post("/payment", updateQty)
 router.get("/rack/:rack?", productRack)

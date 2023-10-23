@@ -45,6 +45,33 @@ const findProduct = async (req, res) => {
     }
 }
 
+// find product with limit by user
+const findProductLimit = async (req, res) => {
+    try {
+        const searchTerm = req.query.search
+        const limit = parseInt(req.query.limit)
+        if (!searchTerm) {
+           throw { error: 'fill it please' }
+        }
+        const data = await fs.readFile(path, encoded)
+        console.log(JSON.parse(data))
+        const searchResult = JSON.parse(data).filter(item => item.name.includes(searchTerm)).slice(0, limit);
+        res.status(200).json({
+            status: true,
+            message: "success",
+            total: searchResult?.length,
+            data: searchResult ? searchResult : "data doesnt exist"
+        })
+    } catch (error) {
+        res.status(500).json({
+            status: false,
+            message: error ?? "we got trouble in the database",
+            total: 0,
+            data: []
+        })
+    }
+}
+
 // add product
 const addProduct = async (req, res) => {
     try {
@@ -182,6 +209,7 @@ const productPriceRange = async (req, res) => {
 module.exports = {
     allProducts,
     findProduct,
+    findProductLimit,
     addProduct,
     updateQty,
     productRack,
